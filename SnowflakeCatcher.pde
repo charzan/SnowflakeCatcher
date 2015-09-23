@@ -1,12 +1,23 @@
+Snowflake [] snow;
+
 void setup()
 {
   //your code here
   size(300, 300);
   background(0, 0, 0);
+  snow = new Snowflake[3];
+  for(int i = 0; i < snow.length; i++)
+  {
+    snow[i] = new Snowflake();
+  }
 }
 void draw()
 {
   //your code here
+  for(int i = 0; i < snow.length; i++)
+  {
+    snow[i].show();
+  }
   
 }
 void mouseDragged()
