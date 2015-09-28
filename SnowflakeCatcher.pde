@@ -3,9 +3,9 @@ Snowflake [] snow;
 void setup()
 {
   //your code here
-  size(300, 300);
+  size(1000, 1000);
   background(0, 0, 0);
-  snow = new Snowflake[1000];
+  snow = new Snowflake[5000];
   for(int i = 0; i < snow.length; i++)
   {
     snow[i] = new Snowflake();
@@ -46,13 +46,13 @@ class Snowflake
   {
     //class member variable initializations
     flakeSize = ((int)(Math.random()*7));
-    xPos = (int)(Math.random()*300);
-    yPos = (int)(Math.random()*500 - 500);
+    xPos = (int)(Math.random()*1000);
+    yPos = (int)(Math.random()*1200 - 1200);
   }
   void show()
   {
     //your code here
-    fill(0,0, 200);
+    fill(250,0, 0);
     ellipse(xPos, yPos, flakeSize, flakeSize);
 
   }
@@ -74,7 +74,7 @@ class Snowflake
     //your code here
     if(yPos % 325 == 0 && yPos > 300)
     {
-      yPos = (int)(Math.random()*500 - 500);
+      yPos = (int)(Math.random()*height + 200 - height + 200);
     }
   }
 }
