@@ -1,17 +1,18 @@
 Snowflake [] snow;
-//int backgroundColor = color(0, 0, 0);
+
+
 
 void setup()
 {
   //your code here
   size(500, 500);
-  
   snow = new Snowflake[1000];
   frameRate(100);
   for(int i = 0; i < snow.length; i++)
   {
     snow[i] = new Snowflake();
   }
+
 }
 void draw()
 {
@@ -25,6 +26,7 @@ void draw()
     snow[i].wrap();
     snow[i].erase();
   }
+  mouseDragged();
   
 }
 void mouseDragged()
@@ -32,12 +34,11 @@ void mouseDragged()
   //your code here
   if(mousePressed)
   {
-    stroke(0);
-    fill(255, 0, 0);
-    ellipse(mouseX, mouseY, 25, 25);
-
+    ellipse(mouseX, mouseY, 10, 10);
   }
+  
 }
+
 
 class Snowflake
 {
@@ -46,14 +47,18 @@ class Snowflake
   int xPos;
   int yPos;
   int fade;
+  int barrierSize;
 
   Snowflake()
   {
     //class member variable initializations
-    fade = 250;
-    flakeSize = ((int)(Math.random()*7));
-    xPos      = (int)(Math.random()*width);
-    yPos      = (int)(Math.random()*(height + 300) - height - 300);
+    fade        = 250;
+    flakeSize   = ((int)(Math.random()*7));
+    xPos        = (int)(Math.random()*width);
+    yPos        = (int)(Math.random()*(height + 300) - height - 300);
+   // barrierSize = 20;
+
+
   }
   void show()
   {
@@ -89,6 +94,7 @@ class Snowflake
     //your code here
     if(yPos % (height + 10) == 0 && yPos > height)
     {
+      fade = 250;
       yPos = (int)(Math.random()*height - height);
     }
   }
