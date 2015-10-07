@@ -1,13 +1,15 @@
 Snowflake [] snow;
+int checkBackground = color(0, 0, 0);
 
 
 
 void setup()
 {
   //your code here
+  background(checkBackground);
   size(500, 500);
   snow = new Snowflake[1000];
-  frameRate(100);
+  frameRate(10);
   for(int i = 0; i < snow.length; i++)
   {
     snow[i] = new Snowflake();
@@ -17,14 +19,13 @@ void setup()
 void draw()
 {
   //your code here
-   background(0, 0, 0);
-  //background(backgroundColor);
   for(int i = 0; i < snow.length; i++)
   {
     snow[i].show();
     snow[i].move();
     snow[i].wrap();
     snow[i].erase();
+    snow[i].lookDown();
   }
   mouseDragged();
   
@@ -52,17 +53,14 @@ class Snowflake
   Snowflake()
   {
     //class member variable initializations
-    fade        = 250;
-    flakeSize   = ((int)(Math.random()*7));
-    xPos        = (int)(Math.random()*width);
-    yPos        = (int)(Math.random()*(height + 300) - height - 300);
-   // barrierSize = 20;
-
+    fade = 250;
+    flakeSize = ((int)(Math.random()*7));
+    xPos = (int)(Math.random()*width);
+    yPos = (int)(Math.random()*(height + 300) - height - 300);
 
   }
   void show()
   {
-    //your code here
     fill(250,250, 250, fade);
     ellipse(xPos, yPos, flakeSize, flakeSize);
 
@@ -70,31 +68,36 @@ class Snowflake
   void lookDown()
   {
     //your code here
-
-
+    if(yPos + flakeSize != checkBackground)
+    {
+      yPos = yPos;
+    }
   }
   void erase()
   {
     //your code here
-    if(mouseX <= xPos + flakeSize + 10 && mouseX >= xPos - flakeSize - 10 && mouseY <= yPos + flakeSize + 10 && mouseY >= yPos - flakeSize - 10)
-    {
-      fade = 0;
-    }
-
-
     
+    if(mousePressed)
+    {
+      if(mouseX <= xPos + flakeSize + 10 && mouseX >= xPos - flakeSize - 10 && mouseY <= yPos + flakeSize + 10 && mouseY >= yPos - flakeSize - 10)
+      {
+        fade = 0;
+      }
+    }
   }
   void move()
   {
     //your code here
+    fade = 0;
     yPos += 1;
+    fade = 255;
   }
   void wrap()
   {
     //your code here
     if(yPos % (height + 10) == 0 && yPos > height)
     {
-      fade = 250;
+      //fade = 250;
       yPos = (int)(Math.random()*height - height);
     }
   }
