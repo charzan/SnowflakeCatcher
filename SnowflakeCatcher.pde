@@ -6,7 +6,7 @@ int checkBackground = color(0, 0, 0);
 void setup()
 {
   //your code here
-  background(checkBackground);
+  
   size(500, 500);
   snow = new Snowflake[1000];
   frameRate(10);
@@ -14,6 +14,8 @@ void setup()
   {
     snow[i] = new Snowflake();
   }
+ // background(checkBackground);
+ background(0);
 
 }
 void draw()
@@ -35,6 +37,7 @@ void mouseDragged()
   //your code here
   if(mousePressed)
   {
+    fill(200);
     ellipse(mouseX, mouseY, 10, 10);
   }
   
@@ -68,7 +71,7 @@ class Snowflake
   void lookDown()
   {
     //your code here
-    if(yPos + flakeSize != checkBackground)
+    if(yPos + flakeSize  != color(0))
     {
       yPos = yPos;
     }
