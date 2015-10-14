@@ -9,7 +9,6 @@ void setup()
   
   size(500, 500);
   snow = new Snowflake[1000];
-  frameRate(10);
   for(int i = 0; i < snow.length; i++)
   {
     snow[i] = new Snowflake();
@@ -24,17 +23,13 @@ void setup()
 }
 void draw()
 {
-  //your code here
-  
+
   for(int i = 0; i < snow.length; i++)
   {
     snow[i].erase();
     snow[i].move();
     snow[i].show();
-    
- 
     snow[i].wrap();
-
     snow[i].lookDown();
   }  
 }
