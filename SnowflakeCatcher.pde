@@ -1,5 +1,5 @@
 Snowflake [] snow;
-int checkBackground = color(0, 0, 0);
+
 
 
 
@@ -13,36 +13,45 @@ void setup()
   for(int i = 0; i < snow.length; i++)
   {
     snow[i] = new Snowflake();
+    
   }
+  background(0, 0, 0);
+
  // background(checkBackground);
- background(0);
+
+
 
 }
 void draw()
 {
   //your code here
+  
   for(int i = 0; i < snow.length; i++)
   {
-    snow[i].show();
-    snow[i].move();
-    snow[i].wrap();
     snow[i].erase();
+    snow[i].move();
+    snow[i].show();
+    
+ 
+    snow[i].wrap();
+
     snow[i].lookDown();
-  }
-  mouseDragged();
-  
+  }  
 }
+
 void mouseDragged()
 {
   //your code here
   if(mousePressed)
   {
-    fill(200);
+    
+    fill(130, 255, 255);
     ellipse(mouseX, mouseY, 10, 10);
   }
+    
   
-}
 
+}
 
 class Snowflake
 {
@@ -52,55 +61,72 @@ class Snowflake
   int yPos;
   int fade;
   int barrierSize;
+  boolean isMoving; 
 
   Snowflake()
   {
     //class member variable initializations
+    isMoving = true;
     fade = 250;
     flakeSize = ((int)(Math.random()*7));
     xPos = (int)(Math.random()*width);
     yPos = (int)(Math.random()*(height + 300) - height - 300);
+    
 
   }
+
+
   void show()
   {
-    fill(250,250, 250, fade);
+    fill(255, 255, 255, fade);
+
     ellipse(xPos, yPos, flakeSize, flakeSize);
 
   }
+
+
   void lookDown()
   {
     //your code here
-    if(yPos + flakeSize  != color(0))
+    if((yPos > flakeSize && yPos < height) && get(xPos, yPos +  flakeSize ) != color(0, 0, 0))
     {
-      yPos = yPos;
+      System.out.println(yPos + flakeSize + " " + get(xPos, yPos +  flakeSize ));
+      isMoving = false;
     }
   }
+
   void erase()
   {
-    //your code here
-    
-    if(mousePressed)
+    fill(0, 0, 0, fade);
+    ellipse(xPos - 1, yPos - 1, flakeSize + 2, flakeSize + 2);
+
+  /*if(mousePressed == false)
     {
       if(mouseX <= xPos + flakeSize + 10 && mouseX >= xPos - flakeSize - 10 && mouseY <= yPos + flakeSize + 10 && mouseY >= yPos - flakeSize - 10)
       {
         fade = 0;
       }
-    }
+    }*/
+
   }
+
   void move()
   {
-    //your code here
-    fade = 0;
-    yPos += 1;
-    fade = 255;
+    //fade = 255;
+    if(isMoving == true)
+    {
+       yPos += 1;
+    }
+   
+    //fade = 0;
   }
   void wrap()
   {
     //your code here
     if(yPos % (height + 10) == 0 && yPos > height)
     {
-      //fade = 250;
+      fade = 255;
+      isMoving = true;
       yPos = (int)(Math.random()*height - height);
     }
   }
