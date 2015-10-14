@@ -90,7 +90,6 @@ class Snowflake
     //your code here
     if((yPos > flakeSize + 1 && yPos < height - flakeSize) && get(xPos, yPos +  flakeSize ) != color(0, 0, 0))
     {
-      System.out.println(yPos + flakeSize + " " + get(xPos, yPos +  flakeSize ));
       isMoving = false;
     }
   }
