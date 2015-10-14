@@ -88,7 +88,7 @@ class Snowflake
   void lookDown()
   {
     //your code here
-    if((yPos > flakeSize && yPos < height) && get(xPos, yPos +  flakeSize ) != color(0, 0, 0))
+    if((yPos > flakeSize + 1 && yPos < height - flakeSize) && get(xPos, yPos +  flakeSize ) != color(0, 0, 0))
     {
       System.out.println(yPos + flakeSize + " " + get(xPos, yPos +  flakeSize ));
       isMoving = false;
